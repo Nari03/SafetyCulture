@@ -9,14 +9,17 @@ import (
 
 func main() {
 	orgID := uuid.FromStringOrNil(folder.DefaultOrgID)
-
 	res := folder.GetAllFolders()
 
 	// example usage
 	folderDriver := folder.NewDriver(res)
-	orgFolder := folderDriver.GetFoldersByOrgID(orgID)
+	// orgFolder := folderDriver.GetFoldersByOrgID(orgID)
+	childFolder:= folderDriver.GetAllChildFolders(orgID, "noble-vixen")
+	// folder.PrettyPrint(res)
+	// fmt.Printf("\n Folders for orgID: %s", orgID)
+	// folder.PrettyPrint(orgFolder)
 
-	folder.PrettyPrint(res)
-	fmt.Printf("\n Folders for orgID: %s", orgID)
-	folder.PrettyPrint(orgFolder)
+	fmt.Printf("\n CHild folders of noble-vixen in orgid: %s ", orgID)
+	folder.PrettyPrint(childFolder)
+	
 }
