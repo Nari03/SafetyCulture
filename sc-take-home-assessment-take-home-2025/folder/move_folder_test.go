@@ -3,7 +3,9 @@ package folder_test
 import (
 	"testing"
 )
-
+// Tests to make
+// 1. for null input - null orgId, null name, and both null
+// 2. 
 func Test_folder_MoveFolder(t *testing.T) {
 	// TODO: your tests here
 // 	folders := [
