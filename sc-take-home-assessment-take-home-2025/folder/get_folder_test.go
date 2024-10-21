@@ -82,7 +82,32 @@ func Test_folder_GetFoldersByOrgID(t *testing.T) {
 			want: []folder.Folder{
 			},
 		},
+		{
+			// No name provided
+			name: "",
+			orgID: org2,
+			folders: []folder.Folder{
+				{Name: "alpha", OrgId: org1, Paths: "alpha"},
+				{Name: "bravo", OrgId: org1, Paths: "alpha.bravo"},
+				{Name: "charlie", OrgId: org1, Paths: "alpha.bravo.charlie"},
 
+			},
+			want: []folder.Folder{
+			},
+		},
+		{
+			// No organisation provided
+			name: "alpha",
+			orgID: uuid.Nil,
+			folders: []folder.Folder{
+				{Name: "alpha", OrgId: org1, Paths: "alpha"},
+				{Name: "bravo", OrgId: org1, Paths: "alpha.bravo"},
+				{Name: "charlie", OrgId: org1, Paths: "alpha.bravo.charlie"},
+
+			},
+			want: []folder.Folder{
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
