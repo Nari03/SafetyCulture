@@ -39,28 +39,31 @@ func (f *driver) GetAllChildFolders(orgID uuid.UUID, name string) []Folder {
 	}
 
 	// checking if the folder exists at all:
-	folderExixts := false
-	allFolders := GetAllFolders()
+	folderExists := false
+	allFolders := f.folders
+	
+	fmt.Printf("%v",allFolders)
+
 	for _,folder := range allFolders{
 		if folder.Name == name{
-			folderExixts = true
+			folderExists = true
 		}
 	}
-	if folderExixts == false{
-		fmt.Print("The folder %s does not exist ", name)
+	if folderExists == false{
+		fmt.Printf("The folder %s does not exist ", name)
 		return nil
 	}
 
 	// now checking if the folder exists in the given organisation
-	folderExixts = false
+	folderExists = false
 	// Consider changing the name of the above variable?
 	for _,folder := range foldersWithOrgID{
 		if folder.Name == name{
-			folderExixts = true
+			folderExists = true
 		}
 	}
-	if folderExixts == false{
-		fmt.Print("The folder %s not found in organisationId %s ", name, orgID)
+	if folderExists == false{
+		fmt.Printf("The folder %s not found in organisationId %s ", name, orgID)
 		return nil
 	}
 
