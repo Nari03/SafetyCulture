@@ -26,5 +26,9 @@ func main() {
 	fmt.Printf("\n All folders from main  ")
 
 	folder.PrettyPrint(childFolder)
-	
+
+	folder.PrettyPrint(res)
+	movingFolders,err := folderDriver.MoveFolder("quick-cyber", "national-screwball")
+	folder.PrettyPrint(movingFolders)
+	fmt.Print(err)
 }
