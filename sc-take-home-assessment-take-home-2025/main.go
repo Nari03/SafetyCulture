@@ -13,22 +13,19 @@ func main() {
 
 	// example usage
 	folderDriver := folder.NewDriver(res)
-	// orgFolder := folderDriver.GetFoldersByOrgID(orgID)
-	// allFolders := folderDriver.GetAllFolders()
 	
 	childFolder:= folderDriver.GetAllChildFolders(orgID, "noble-vixen")
 	
-	// folder.PrettyPrint(res)
-	// fmt.Printf("\n Folders for orgID: %s", orgID)
-	// folder.PrettyPrint(orgFolder)
 
 	fmt.Printf("\n Child folders of noble-vixen in orgid: %s ", orgID)
-	fmt.Printf("\n All folders from main  ")
-
 	folder.PrettyPrint(childFolder)
 
-	folder.PrettyPrint(res)
-	movingFolders,err := folderDriver.MoveFolder("quick-cyber", "national-screwball")
+	fmt.Printf("\n Moving folder quick-cyber to national-screwball %s ", orgID)
+	movingFolders, err := folderDriver.MoveFolder("quick-cyber", "national-screwball")
+	if err != nil {
+		fmt.Printf("Error occured in moving folder: %v\n", err)
+		return
+	}
 	folder.PrettyPrint(movingFolders)
-	fmt.Print(err)
+	
 }

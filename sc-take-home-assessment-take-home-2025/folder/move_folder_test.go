@@ -71,7 +71,7 @@ func Test_MoveFolder_CircularMove(t *testing.T) {
 
 	_, err := f.MoveFolder("alpha", "bravo")
 	if err == nil || err.Error() != "Cannot move folder to one of its sub folders" {
-		t.Errorf("Expected circular move error, but got: %v", err)
+		t.Errorf("Expected Cannot move folder to one of its sub folders, but got: %v", err)
 	}
 }
 
@@ -111,5 +111,21 @@ func Test_MoveFolder_EmptyInput(t *testing.T) {
 	_, err = f.MoveFolder("alpha", "")
 	if err == nil || err.Error() != "Destination folder  does not exist" {
 		t.Errorf("Expected 'Destination folder  does not exist', but got: %v", err)
+	}
+}
+
+func Test_MoveFolder_Itself(t *testing.T) {
+	orgID := uuid.Must(uuid.NewV4())
+
+	testFolders := []folder.Folder{
+		{Name: "alpha", OrgId: orgID, Paths: "alpha"},
+		{Name: "bravo", OrgId: orgID, Paths: "alpha.bravo"},
+	}
+
+	f := folder.NewDriver(testFolders)
+
+	_, err := f.MoveFolder("alpha", "alpha")
+	if err == nil || err.Error() != "Cannot move a folder to itself" {
+		t.Errorf("Cannot move a folder to itself, but got: %v", err)
 	}
 }

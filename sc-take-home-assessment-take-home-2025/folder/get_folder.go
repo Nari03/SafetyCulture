@@ -56,7 +56,7 @@ func (f *driver) GetAllChildFolders(orgID uuid.UUID, name string) []Folder {
 
 	// now checking if the folder exists in the given organisation
 	folderExists = false
-	// Consider changing the name of the above variable?
+
 	for _,folder := range foldersWithOrgID{
 		if folder.Name == name{
 			folderExists = true
@@ -67,19 +67,19 @@ func (f *driver) GetAllChildFolders(orgID uuid.UUID, name string) []Folder {
 		return nil
 	}
 
-	fmt.Printf("found folders w orgID")
 	childFolders := []Folder{}
 	parentPath := name + "."
 
+	// positive case - getting all child folders
 	for _, folder := range foldersWithOrgID{
 		if strings.HasPrefix(folder.Paths, parentPath){
 			childFolders = append(childFolders, folder)
 		}
 	}
 
+	// if no child folders are found
 	if len(childFolders) == 0{
 		fmt.Printf("Folder %s found in OrganisationID %s but is empty.", name, orgID)
 	}
-	// need to add error cases for when the folder does not exist and when folder does not exist in specified organisation
 	return childFolders
 }
