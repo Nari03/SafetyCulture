@@ -3,12 +3,9 @@ package folder
 import (
 	"fmt"
 	"strings"
-	// "errors"
 )
 
 func (f *driver) MoveFolder(name string, dst string) ([]Folder, error) {
-// 	// Your code here...
-
 	var srcFolder *Folder
 	var dstFolder *Folder
 
@@ -25,13 +22,13 @@ func (f *driver) MoveFolder(name string, dst string) ([]Folder, error) {
 
 	// Handling the case when a source folder does not exist
 	if srcFolder == nil{
-		fmt.Printf("Source folder %s does not exist", name)
+		fmt.Print("Source folder does not exist")
 		return nil, fmt.Errorf("Source folder %s does not exist", name)
 	}
 
 	// Handling the case when a destination folder does not exist
 	if dstFolder == nil{
-		fmt.Printf("Destination folder %s does not exist", dst)
+		fmt.Print("Destination folder does not exist")
 		return nil, fmt.Errorf("Destination folder %s does not exist", dst)
 	}
 
