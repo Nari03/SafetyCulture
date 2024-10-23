@@ -261,7 +261,7 @@ moveFolder("bravo", "golf")
   },
   {
     name: "foxtrot",
-    pa th: "foxtrot",
+    path: "foxtrot",
     orgID: "org2",
   },
   {
